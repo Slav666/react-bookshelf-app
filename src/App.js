@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import "@reach/dialog/styles.css";
+import React, { useState } from "react";
+import { Logo } from "./components/logo";
+import { Dialog } from "@reach/dialog";
+import LoginForm from "./components/loginForm";
 
 function App() {
+  const [openModal, setOpenModal] = useState("none");
+
+  function login(formData) {
+    console.log("login", formData);
+  }
+
+  function register(formData) {
+    console.log("register", formData);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Logo width="80" height="80" />
+      <h1>Bookshelf</h1>
+      <div>
+        <button onClick={() => setOpenModal("login")}>Login</button>
+      </div>
+      <div>
+        <button onClick={() => setOpenModal("register")}>Register</button>
+      </div>
+      <Dialog aria-label="Login form" isOpen={openModal === "login"}>
+        <div>
+          <button onClick={() => setOpenModal("none")}>Close</button>
+        </div>
+        <h3>Login</h3>
+        <LoginForm onSubmit={login} buttonText="Login" />
+      </Dialog>
+      <Dialog aria-label="Registration form" isOpen={openModal === "register"}>
+        <div>
+          <button onClick={() => setOpenModal("none")}>Close</button>
+        </div>
+        <h3>Register</h3>
+        <LoginForm onSubmit={register} buttonText="Register" />
+      </Dialog>
     </div>
   );
 }
