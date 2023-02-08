@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { Dialog as ReachDialog } from "@reach/dialog";
+import { FaSpinner } from "react-icons/fa";
+import { keyframes } from "@emotion/core";
 
 const ButtonsVariant = {
   primary: {
@@ -61,4 +63,50 @@ const FormGroup = styled.div({
   flexDirection: "column",
 });
 
-export { Button, Input, CircleButton, Dialog, FormGroup };
+const spin = keyframes({
+  "0%": { transform: "rotate(0deg)" },
+  "100%": { transform: "rotate(360deg)" },
+});
+
+const Spinner = styled(FaSpinner)({
+  animation: `${spin} 1s linear infinite`,
+});
+Spinner.defaultProps = {
+  "aria-label": "loading",
+};
+
+function FullPageSpinner() {
+  return (
+    <div
+      css={{
+        fontSize: "4em",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Spinner />
+    </div>
+  );
+}
+
+const BookListUL = styled.ul({
+  listStyle: "none",
+  padding: "0",
+  display: "grid",
+  gridTemplateRows: "repeat(auto-fill, minmax(100px, 1fr))",
+  gridGap: "1em",
+});
+
+export {
+  Button,
+  Input,
+  CircleButton,
+  Dialog,
+  FormGroup,
+  FullPageSpinner,
+  BookListUL,
+  Spinner,
+};

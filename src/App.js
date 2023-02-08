@@ -3,6 +3,7 @@ import { Logo } from "./components/logo";
 import LoginForm from "./components/loginForm";
 import { Button } from "./components/reusableComponent";
 import { Modal, ModalContents, ModalOpenButton } from "./components/modal";
+import { DiscoverBooksScreen } from "./discover";
 
 function App() {
   function login(formData) {
@@ -56,6 +57,8 @@ function App() {
           </ModalContents>
         </Modal>
       </div>
+      <DiscoverBooksScreen />
+      
     </div>
   );
 }
